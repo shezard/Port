@@ -11,7 +11,11 @@ World.prototype.render = function(map, player, entities) {
 
   var cols = [];
 
-  for(var j = -1 ; j <= 1 ; j++) {
+  var depth = [-1, 1, 0];
+
+  for(var d = 0 ; d <= 2 ; d++) {
+
+    var j = depth[d];
 
     for(var i = 5 ; i >= 0 ; i -= 1) {
 
@@ -31,9 +35,16 @@ World.prototype.render = function(map, player, entities) {
       }
 
       if(collide) {
+
+        var x = 4 - i;
+        var y = j + 1;
+        if(player.d.x == -1 && player.d.y == 0 || player.d.x == 0 && player.d.y == 1) {
+          y = -j + 1;
+        }
+
         cols.push({
-          x: 4 - i,
-          y: j + 1,
+          x: x,
+          y: y,
           color: collide
         });
       }
@@ -49,7 +60,7 @@ World.prototype.render = function(map, player, entities) {
     [{x:0, y:0,  w:20, h:this.height},    {x:(this.width-140) / 2, y:0, w:140,h:this.height},      {x:this.width-20, y:0,  w:20, h:this.height}],
   ]
 
-  this.drawBackground(colors);
+  this.drawBackground();
 
   for(var i = 0 ; i < cols.length ; i++) {
     var col = cols[i];
@@ -62,7 +73,7 @@ World.prototype.render = function(map, player, entities) {
 
 }
 
-World.prototype.drawBackground = function(colors) {
+World.prototype.drawBackground = function() {
   this.ctx.fillStyle = colors.sky;
   this.ctx.fillRect(0, 0, this.width, this.height / 2);
   this.ctx.fillStyle = colors.grass;
