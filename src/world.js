@@ -67,8 +67,7 @@ World.prototype.render = function(map, player, entities) {
 
     var shape = shapes[col.x][col.y];
 
-    this.ctx.fillStyle = colors.toHSLString(col.color);
-    this.ctx.fillRect(shape.x, shape.y, shape.w, shape.h);
+    this.draw(shape, col.color);
   }
 
 }
@@ -80,8 +79,8 @@ World.prototype.drawBackground = function() {
   this.ctx.fillRect(0, this.height / 2, this.width, this.height / 2);
 }
 
-World.prototype.draw = function(shape) {
-  this.ctx.fillStyle = colors.toHSLString(col.color);
+World.prototype.draw = function(shape, color) {
+  this.ctx.fillStyle = colors.toHSLString(color);
   this.ctx.fillRect(shape.x, shape.y, shape.w, shape.h);
 }
 
