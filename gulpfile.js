@@ -33,4 +33,10 @@ function build() {
 
 gulp.task('build', build);
 
-gulp.task('default', ['build']);
+gulp.task('test', function (done) {
+  new Server({
+    configFile: path.join(__dirname, 'karma.conf.js')
+  }, done).start();
+});
+
+gulp.task('default', ['build', 'test']);

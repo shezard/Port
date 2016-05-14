@@ -1,10 +1,10 @@
 {
   "name": "port",
   "version": "0.0.1",
-  "description": "Explore the land of port",
+  "description": "Explore the land of Port",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
   },
   "author": "Damien Fayol",
   "license": "ISC",
@@ -12,6 +12,14 @@
     "browserify": "^13.0.1",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^1.6.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-browserify": "^5.0.5",
+    "karma-coverage": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-spec-reporter": "0.0.26",
+    "phantomjs-prebuilt": "^2.1.7",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
