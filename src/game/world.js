@@ -33,8 +33,6 @@ World.prototype.render = function(map, player, entities) {
         y: player.y + player.d.y * i + (1 - Math.abs(player.d.y)) * j
       }
 
-      var collide = false;
-
       if(map[hit.y] && map[hit.y][hit.x]) {
         var color = map[hit.y][hit.x];
 
@@ -43,10 +41,7 @@ World.prototype.render = function(map, player, entities) {
         if(player.d.x == -1 && player.d.y == 0 || player.d.x == 0 && player.d.y == 1) {
           wallY = -j + 1;
         }
-
-        var shape = this.shapes[wallX][wallY];
-
-        this.draw(shape, color);
+        this.drawWall(wallX, wallY, color);
       }
     }
   }
@@ -59,7 +54,8 @@ World.prototype.drawBackground = function() {
   this.ctx.fillRect(0, this.height / 2, this.width, this.height / 2);
 }
 
-World.prototype.draw = function(shape, color) {
+World.prototype.drawWall = function(x, y, color) {
+  var shape = this.shapes[x][y];
   this.ctx.fillStyle = colors.toHSLString(color);
   this.ctx.fillRect(shape.x, shape.y, shape.w, shape.h);
 }
