@@ -1,6 +1,6 @@
 var Player = require('../../../src/game/player');
 
-describe('Minimap', function() {
+describe('Player', function() {
 
   var player;
 
