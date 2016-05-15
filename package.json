@@ -13,6 +13,7 @@
     "browserify-istanbul": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^1.6.0",
+    "imgurify": "^2.0.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-browserify": "^5.0.5",

@@ -16,9 +16,7 @@ var opts = {
 }
 
 var b = watchify(browserify(opts));
-/*b.transform('babelify', {
-  presets: ['es2015', 'react']
-});*/
+b.transform('imgurify');
 
 b.on('update', build);
 

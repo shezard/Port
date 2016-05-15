@@ -1,4 +1,7 @@
 var colors = require('../utils/colors');
+var imgMaker = require('../utils/imgMaker');
+
+var wall = imgMaker(require('../img/wall.png'));
 
 var World = function(el, mapSize) {
   this.ctx = el.getContext('2d');
@@ -56,8 +59,7 @@ World.prototype.drawBackground = function() {
 
 World.prototype.drawWall = function(x, y, color) {
   var shape = this.shapes[x][y];
-  this.ctx.fillStyle = colors.toHSLString(color);
-  this.ctx.fillRect(shape.x, shape.y, shape.w, shape.h);
+  this.ctx.drawImage(wall, shape.x, shape.y, shape.w, shape.h);
 }
 
 module.exports = World;

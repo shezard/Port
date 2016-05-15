@@ -19,7 +19,7 @@ module.exports = function(config) {
     },
     browserify: {
       debug: true,
-      transform: ['browserify-istanbul']
+      transform: ['imgurify', 'browserify-istanbul']
     }
   });
 };
