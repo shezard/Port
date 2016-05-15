@@ -12,8 +12,6 @@ for(var i = 0 ; i < mapSize ; i++) {
   }
 }
 
-console.log(document.querySelector.toString());
-
 var minimap = new Minimap(document.querySelector('#minimap'), mapSize);
 minimap.render(map, player, []);
 
