@@ -15,11 +15,20 @@ Minimap.prototype.render = function(map, player, entities) {
   for(var x = 0 ; x < this.mapSize ; x++) {
     for(var y = 0 ; y < this.mapSize ; y++) {
       if(map[y][x]) {
-        var image = texture.get(map[y][x]);
-        this.ctx.drawImage(image, x * this.scale, y * this.scale, this.scale, this.scale);
+        this.drawTile(x, y, map[y][x]);
       }
     }
   }
+
+  this.drawPlayer(player);
+}
+
+Minimap.prototype.drawTile = function(x, y, blockId) {
+    var image = texture.get(blockId);
+    this.ctx.drawImage(image, x * this.scale, y * this.scale, this.scale, this.scale);
+}
+
+Minimap.prototype.drawPlayer = function(player) {
 
   var playerScale = .2;
   var playerOffset = (this.scale - this.scale * playerScale) / 2;
