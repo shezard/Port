@@ -1,4 +1,5 @@
 var colors = require('../utils/colors');
+var texture = require('../utils/texture');
 
 var Minimap = function(el, mapSize) {
   this.el = el;
@@ -10,18 +11,12 @@ var Minimap = function(el, mapSize) {
 Minimap.prototype.render = function(map, player, entities) {
   this.ctx.fillStyle = colors.grass;
   this.ctx.fillRect(0, 0, this.mapSize * this.scale, this.mapSize * this.scale);
-  this.ctx.fillStyle = '#000000';
 
   for(var x = 0 ; x < this.mapSize ; x++) {
     for(var y = 0 ; y < this.mapSize ; y++) {
       if(map[y][x]) {
-        this.ctx.fillStyle = colors.toHSLString(map[y][x]);
-        this.ctx.fillRect(
-          x * this.scale,
-          y * this.scale,
-          this.scale,
-          this.scale
-        );
+        var image = texture.get(map[y][x]);
+        this.ctx.drawImage(image, x * this.scale, y * this.scale, this.scale, this.scale);
       }
     }
   }
@@ -29,6 +24,7 @@ Minimap.prototype.render = function(map, player, entities) {
   var playerScale = .2;
   var playerOffset = (this.scale - this.scale * playerScale) / 2;
 
+  this.ctx.fillStyle = '#000000';
   this.ctx.fillRect(
     player.x * this.scale + playerOffset,
     player.y * this.scale + playerOffset,

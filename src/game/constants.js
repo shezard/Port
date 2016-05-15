@@ -16,5 +16,14 @@ module.exports = {
       x:0,
       y:-1
     }
+  },
+
+  blocks: {
+    1: {
+      base64: require('../img/wall.png'),
+    },
+    9: {
+      base64: require('../img/bush.png'),
+    },
   }
 };

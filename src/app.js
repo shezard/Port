@@ -6,12 +6,6 @@ var mapSize = constants.mapSize;
 var map = constants.map;
 var player = constants.player;
 
-for(var i = 0 ; i < mapSize ; i++) {
-  for(var j = 0 ; j < mapSize ; j++) {
-    map[i][j] *= 10;
-  }
-}
-
 var minimap = new Minimap(document.querySelector('#minimap'), mapSize);
 minimap.render(map, player, []);
 

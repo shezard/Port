@@ -1,7 +1,5 @@
 var colors = require('../utils/colors');
-var imgMaker = require('../utils/imgMaker');
-
-var wall = imgMaker(require('../img/wall.png'));
+var texture = require('../utils/texture');
 
 var World = function(el, mapSize) {
   this.ctx = el.getContext('2d');
@@ -37,14 +35,13 @@ World.prototype.render = function(map, player, entities) {
       }
 
       if(map[hit.y] && map[hit.y][hit.x]) {
-        var color = map[hit.y][hit.x];
 
         var wallX = this.sightRange - i;
         var wallY = j + 1;
         if(player.d.x == -1 && player.d.y == 0 || player.d.x == 0 && player.d.y == 1) {
           wallY = -j + 1;
         }
-        this.drawWall(wallX, wallY, color);
+        this.drawWall(wallX, wallY, map[hit.y][hit.x]);
       }
     }
   }
@@ -57,9 +54,10 @@ World.prototype.drawBackground = function() {
   this.ctx.fillRect(0, this.height / 2, this.width, this.height / 2);
 }
 
-World.prototype.drawWall = function(x, y, color) {
+World.prototype.drawWall = function(x, y, blockId) {
   var shape = this.shapes[x][y];
-  this.ctx.drawImage(wall, shape.x, shape.y, shape.w, shape.h);
+  var image = texture.get(blockId);
+  this.ctx.drawImage(image, shape.x, shape.y, shape.w, shape.h);
 }
 
 module.exports = World;
