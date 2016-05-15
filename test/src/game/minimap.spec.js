@@ -13,4 +13,8 @@ describe('Minimap', function() {
     expect(minimap.mapSize).toBe(3);
     expect(minimap.scale).toBe(100);
   });
+
+  afterEach(function() {
+    minimap = null;
+  });
 });

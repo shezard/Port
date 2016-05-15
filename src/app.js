@@ -1,10 +1,12 @@
 var Minimap = require('./game/minimap');
 var World = require('./game/world');
+var Player = require('./game/Player');
+
 var constants = require('./game/constants');
 
 var mapSize = constants.mapSize;
 var map = constants.map;
-var player = constants.player;
+var player = new Player(constants.player);
 
 var minimap = new Minimap(document.querySelector('#minimap'), mapSize);
 minimap.render(map, player, []);
@@ -12,37 +14,21 @@ minimap.render(map, player, []);
 var world = new World(document.querySelector('#world'), mapSize);
 world.render(map, player, []);
 
-// TODO : put on player object ?
 document.querySelector('body').addEventListener('keyup', function(e) {
   switch(e.keyCode) {
-    case 90:
-      player.x += player.d.x;
-      player.y += player.d.y;
+    case 90: player.forward();
       break;
 
-    case 81:
-      var angle = Math.atan2(player.d.y, player.d.x);
-      angle -= Math.PI * .5;
-
-      player.d.x = Math.round(Math.cos(angle));
-      player.d.y = Math.round(Math.sin(angle));
+    case 81: player.left();
       break;
 
-    case 83:
-      player.x -= player.d.x;
-      player.y -= player.d.y;
+    case 83: player.backward();
       break;
 
-    case 68:
-      var angle = Math.atan2(player.d.y, player.d.x);
-      angle += Math.PI * .5;
-
-      player.d.x = Math.round(Math.cos(angle));
-      player.d.y = Math.round(Math.sin(angle));
+    case 68: player.right();
       break;
   }
 
   minimap.render(map, player, []);
   world.render(map, player, []);
-
 });
