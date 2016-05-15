@@ -1,6 +1,6 @@
-var Minimap = require('./minimap');
-var World = require('./world');
-var constants = require('./constants');
+var Minimap = require('./game/minimap');
+var World = require('./game/world');
+var constants = require('./game/constants');
 
 var mapSize = constants.mapSize;
 var map = constants.map;
@@ -11,6 +11,8 @@ for(var i = 0 ; i < mapSize ; i++) {
     map[i][j] *= 10;
   }
 }
+
+console.log(document.querySelector.toString());
 
 var minimap = new Minimap(document.querySelector('#minimap'), mapSize);
 minimap.render(map, player, []);

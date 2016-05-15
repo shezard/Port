@@ -7,6 +7,9 @@ var buffer = require('vinyl-buffer');
 
 var sourcemaps = require('gulp-sourcemaps');
 
+var Server = require('karma').Server;
+var path = require('path');
+
 var opts = {
   entries: ['./src/app.js'],
   debug: true

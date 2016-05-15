@@ -5,9 +5,11 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     plugins: ['karma-jasmine', 'karma-browserify', 'karma-spec-reporter', 'karma-phantomjs-launcher', 'karma-coverage'],
     files: [
+      'src/game/**/*.js',
       'test/**/*.spec.js'
     ],
     preprocessors: {
+      'src/game/**/*.js': ['browserify'],
       'test/**/*.js': ['browserify']
     },
     autoWatch: true,
@@ -16,7 +18,8 @@ module.exports = function(config) {
       dir : 'coverage/'
     },
     browserify: {
-      debug: true
+      debug: true,
+      transform: ['browserify-istanbul']
     }
   });
 };

@@ -1,4 +1,4 @@
-var colors = require('./utils/colors');
+var colors = require('../utils/colors');
 
 var World = function(el, mapSize) {
   this.ctx = el.getContext('2d');

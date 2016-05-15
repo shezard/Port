@@ -1,5 +1,5 @@
 module.exports = {
-  toHSLString(color) {
+  toHSLString: function(color) {
     return 'hsl(' + color + ', 100%, 50%)'
   },
   sky: '#3333BB',

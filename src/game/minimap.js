@@ -1,4 +1,4 @@
-var colors = require('./utils/colors');
+var colors = require('../utils/colors');
 
 var Minimap = function(el, mapSize) {
   this.el = el;
