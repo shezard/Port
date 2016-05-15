@@ -29,30 +29,24 @@ World.prototype.render = function(map, player, entities) {
     for(var i = this.sightRange ; i >= 0 ; i -= 1) {
 
       var hit = {
-        x: player.x + 1 + player.d.x * i + (1 - Math.abs(player.d.x)) * j,
-        y: player.y + 1 + player.d.y * i + (1 - Math.abs(player.d.y)) * j
+        x: player.x + player.d.x * i + (1 - Math.abs(player.d.x)) * j,
+        y: player.y + player.d.y * i + (1 - Math.abs(player.d.y)) * j
       }
-
-      console.log(hit);
 
       var collide = false;
 
-      for(var x = 0 ; x < this.mapSize ; x++) {
-        for(var y = 0 ; y < this.mapSize ; y++) {
-          if(map[y][x] && x < hit.x && hit.x <= (x + 1) && y < hit.y && hit.y <= (y + 1)) {
-            var color = map[y][x];
+      if(map[hit.y] && map[hit.y][hit.x]) {
+        var color = map[hit.y][hit.x];
 
-            var wallX = this.sightRange - i;
-            var wallY = j + 1;
-            if(player.d.x == -1 && player.d.y == 0 || player.d.x == 0 && player.d.y == 1) {
-              wallY = -j + 1;
-            }
-
-            var shape = this.shapes[wallX][wallY];
-
-            this.draw(shape, color);
-          }
+        var wallX = this.sightRange - i;
+        var wallY = j + 1;
+        if(player.d.x == -1 && player.d.y == 0 || player.d.x == 0 && player.d.y == 1) {
+          wallY = -j + 1;
         }
+
+        var shape = this.shapes[wallX][wallY];
+
+        this.draw(shape, color);
       }
     }
   }
