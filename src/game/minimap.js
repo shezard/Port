@@ -5,8 +5,13 @@ var Minimap = function(el, mapWidth, mapHeight, loaders) {
   this.ctx = el.getContext('2d');
   this.mapWidth = mapWidth;
   this.mapHeight = mapHeight;
+
   this.scaleX = el.width / this.mapWidth;
   this.scaleY = el.height / this.mapHeight
+
+  this.scaleX = Math.min(this.scaleX, this.scaleY);
+  this.scaleY = Math.min(this.scaleX, this.scaleY);
+
   this.loaders = loaders;
 }
 

@@ -12,7 +12,7 @@ describe('Minimap', function() {
   it('should be initialized correctly', function() {
     expect(minimap.mapWidth).toBe(3);
     expect(minimap.mapHeight).toBe(3);
-    expect(minimap.scaleX).toBe(100);
+    expect(minimap.scaleX).toBe(50);
     expect(minimap.scaleY).toBe(50);
   });
 
