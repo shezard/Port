@@ -6,7 +6,8 @@ var constants = require('./game/constants');
 
 var mapSize = constants.mapSize;
 var map = constants.map;
-var player = new Player(constants.player);
+
+var player = new Player(map, constants.player);
 
 var minimap = new Minimap(document.querySelector('#minimap'), mapSize);
 minimap.render(map, player, []);
@@ -14,7 +15,6 @@ minimap.render(map, player, []);
 var world = new World(document.querySelector('#world'), mapSize);
 world.render(map, player, []);
 
-// TODO : implements collision (player - map)
 document.querySelector('body').addEventListener('keyup', function(e) {
   switch(e.keyCode) {
     case 90: player.forward();

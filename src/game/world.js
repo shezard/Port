@@ -58,6 +58,8 @@ World.prototype.drawWall = function(x, y, blockId) {
   var shape = this.shapes[x][y];
   var image = texture.get(blockId);
   this.ctx.drawImage(image, shape.x, shape.y, shape.w, shape.h);
+  this.ctx.fillStyle = 'rgba(0,0,0,' + (5-x)/7 + ')';
+  this.ctx.fillRect(shape.x, shape.y, shape.w, shape.h);
 }
 
 module.exports = World;
