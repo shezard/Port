@@ -6,7 +6,7 @@ var World = function(el, loaders) {
   this.height = el.height;
   this.sightRange = 8;
   this.loaders = loaders;
-  this.fov = 60;
+  this.fov = 50;
 }
 
 World.prototype.render = function(map, player, entities) {
@@ -58,8 +58,8 @@ World.prototype.render = function(map, player, entities) {
 
 World.prototype.drawWall = function(hit) {
   var x = (hit.a + this.fov) / (this.fov * 2) * this.width;
-  var y = (hit.t / this.sightRange) * 50;
-
+  var y = (hit.t / this.sightRange) * 150 * Math.cos(hit.a / 180 * Math.PI);
+      y += 25;
   this.ctx.fillStyle = '#000000';
   if(hit.block == 3) {
     this.ctx.fillStyle = '#00CC00';
