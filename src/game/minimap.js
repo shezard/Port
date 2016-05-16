@@ -1,5 +1,6 @@
 var colors = require('../utils/colors');
-var texture = require('../utils/texture');
+var TextureLoader = require('../utils/texture');
+var textureLoader = new TextureLoader(require('../game/constants').blocks);
 
 var Minimap = function(el, mapSize) {
   this.el = el;
@@ -24,7 +25,7 @@ Minimap.prototype.render = function(map, player, entities) {
 }
 
 Minimap.prototype.drawTile = function(x, y, blockId) {
-    var image = texture.get(blockId);
+    var image = textureLoader.get(blockId);
     this.ctx.drawImage(image, x * this.scale, y * this.scale, this.scale, this.scale);
 }
 

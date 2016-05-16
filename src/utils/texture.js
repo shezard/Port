@@ -1,11 +1,18 @@
-var blocks = require('../game/constants').blocks;
+function TextureLoader(blocks) {
+  this.textures = [];
 
-module.exports = {
-  get: function(blockId) {
-    var base64 = blocks[blockId].base64;
-
+  for(var blockId in blocks) {
     var image = new Image();
-    image.src = base64;
-    return image;
+    image.src = blocks[blockId].base64;
+    image.onload = function() {
+      console.log('ready', blockId);
+    }
+    this.textures[blockId] = image;
   }
 }
+
+TextureLoader.prototype.get = function(blockId) {
+  return this.textures[blockId];
+}
+
+module.exports = TextureLoader;
