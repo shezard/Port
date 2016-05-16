@@ -5,15 +5,17 @@ var World = function(el, mapSize, loaders) {
   this.width = el.width;
   this.height = el.height;
   this.mapSize = mapSize;
-  this.sightRange = 4;
+  this.sightRange = 6;
   this.loaders = loaders;
 
   this.shapes = [
-    [{x:0, y:40, w:60, h:this.height-80},{},                                                       {x:this.width-60, y:50, w:60, h:this.height-80}],
-    [{x:0, y:30, w:50, h:this.height-60}, {x:(this.width-100) / 2, y:30,w:100, h:this.height - 60},{x:this.width-50, y:30, w:50, h:this.height-60}],
-    [{x:0, y:20, w:40, h:this.height-40}, {x:(this.width-120) / 2, y:20,w:120, h:this.height - 40},{x:this.width-40, y:20, w:40, h:this.height-40}],
-    [{x:0, y:10, w:30, h:this.height-20}, {x:(this.width-140) / 2, y:10,w:140,h:this.height - 20}, {x:this.width-30, y:10, w:30, h:this.height-20}],
-    [{x:0, y:0,  w:20, h:this.height},    {x:(this.width-140) / 2, y:0, w:140,h:this.height},      {x:this.width-20, y:0,  w:20, h:this.height}],
+    [{x:0, y:60, w:80, h:this.height-120},{x:(this.width-40) / 2,  y:60,w:40, h:this.height - 120},{x:this.width-80, y:60, w:80, h:this.height-120}],
+    [{x:0, y:50, w:70, h:this.height-100},{x:(this.width-60) / 2,  y:50,w:60, h:this.height - 100},{x:this.width-70, y:50, w:70, h:this.height-100}],
+    [{x:0, y:40, w:60, h:this.height-80},{x:(this.width-80) / 2,  y:40,w:80, h:this.height - 80},{x:this.width-60, y:40, w:60, h:this.height-80}],
+    [{x:0, y:30, w:50, h:this.height-60},{x:(this.width-100) / 2, y:30,w:100,h:this.height - 60},{x:this.width-50, y:30, w:50, h:this.height-60}],
+    [{x:0, y:20, w:40, h:this.height-40},{x:(this.width-120) / 2, y:20,w:120,h:this.height - 40},{x:this.width-40, y:20, w:40, h:this.height-40}],
+    [{x:0, y:10, w:30, h:this.height-20},{x:(this.width-140) / 2, y:10,w:140,h:this.height - 20}, {x:this.width-30, y:10, w:30, h:this.height-20}],
+    [{x:0, y:0,  w:20, h:this.height},   {x:(this.width-140) / 2, y:0, w:140,h:this.height},      {x:this.width-20, y:0,  w:20, h:this.height}],
   ]
 }
 

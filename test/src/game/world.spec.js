@@ -31,11 +31,11 @@ describe('World', function() {
       }
     }, []);
 
-    expect(world.drawWall).toHaveBeenCalledWith(3,0,1);
-    expect(world.drawWall).toHaveBeenCalledWith(4,0,1);
-    expect(world.drawWall).toHaveBeenCalledWith(3,2,1);
-    expect(world.drawWall).toHaveBeenCalledWith(4,2,1);
-    expect(world.drawWall).toHaveBeenCalledWith(3,1,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,0,1);
+    expect(world.drawWall).toHaveBeenCalledWith(6,0,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,2,1);
+    expect(world.drawWall).toHaveBeenCalledWith(6,2,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,1,1);
   });
 
   it('should render correctly (facing right)', function() {
@@ -54,11 +54,11 @@ describe('World', function() {
       }
     }, []);
 
-    expect(world.drawWall).toHaveBeenCalledWith(3,0,1);
-    expect(world.drawWall).toHaveBeenCalledWith(4,0,1);
-    expect(world.drawWall).toHaveBeenCalledWith(3,2,1);
-    expect(world.drawWall).toHaveBeenCalledWith(4,2,1);
-    expect(world.drawWall).toHaveBeenCalledWith(3,1,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,0,1);
+    expect(world.drawWall).toHaveBeenCalledWith(6,0,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,2,1);
+    expect(world.drawWall).toHaveBeenCalledWith(6,2,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,1,1);
   });
 
   it('should render correctly (facing top)', function() {
@@ -77,11 +77,11 @@ describe('World', function() {
       }
     }, []);
 
-    expect(world.drawWall).toHaveBeenCalledWith(3,0,1);
-    expect(world.drawWall).toHaveBeenCalledWith(4,0,1);
-    expect(world.drawWall).toHaveBeenCalledWith(3,2,1);
-    expect(world.drawWall).toHaveBeenCalledWith(4,2,1);
-    expect(world.drawWall).toHaveBeenCalledWith(3,1,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,0,1);
+    expect(world.drawWall).toHaveBeenCalledWith(6,0,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,2,1);
+    expect(world.drawWall).toHaveBeenCalledWith(6,2,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,1,1);
   });
 
   it('should render correctly (facing bottom)', function() {
@@ -100,11 +100,11 @@ describe('World', function() {
       }
     }, []);
 
-    expect(world.drawWall).toHaveBeenCalledWith(3,0,1);
-    expect(world.drawWall).toHaveBeenCalledWith(4,0,1);
-    expect(world.drawWall).toHaveBeenCalledWith(3,2,1);
-    expect(world.drawWall).toHaveBeenCalledWith(4,2,1);
-    expect(world.drawWall).toHaveBeenCalledWith(3,1,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,0,1);
+    expect(world.drawWall).toHaveBeenCalledWith(6,0,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,2,1);
+    expect(world.drawWall).toHaveBeenCalledWith(6,2,1);
+    expect(world.drawWall).toHaveBeenCalledWith(5,1,1);
   });
 
   afterEach(function() {
