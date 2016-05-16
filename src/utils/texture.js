@@ -4,9 +4,6 @@ function TextureLoader(blocks) {
   for(var blockId in blocks) {
     var image = new Image();
     image.src = blocks[blockId].base64;
-    image.onload = function() {
-      console.log('ready', blockId);
-    }
     this.textures[blockId] = image;
   }
 }

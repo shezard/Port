@@ -5,11 +5,11 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     plugins: ['karma-jasmine', 'karma-browserify', 'karma-spec-reporter', 'karma-phantomjs-launcher', 'karma-coverage'],
     files: [
-      'src/game/**/*.js',
+      'src/**/*.js',
       'test/**/*.spec.js'
     ],
     preprocessors: {
-      'src/game/**/*.js': ['browserify'],
+      'src/**/*.js': ['browserify'],
       'test/**/*.js': ['browserify']
     },
     autoWatch: true,

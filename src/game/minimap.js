@@ -1,12 +1,11 @@
 var colors = require('../utils/colors');
-var TextureLoader = require('../utils/texture');
-var textureLoader = new TextureLoader(require('../game/constants').blocks);
 
-var Minimap = function(el, mapSize) {
+var Minimap = function(el, mapSize, loaders) {
   this.el = el;
   this.ctx = el.getContext('2d');
   this.mapSize = mapSize;
   this.scale = el.width / mapSize;
+  this.loaders = loaders;
 }
 
 Minimap.prototype.render = function(map, player, entities) {
@@ -25,7 +24,7 @@ Minimap.prototype.render = function(map, player, entities) {
 }
 
 Minimap.prototype.drawTile = function(x, y, blockId) {
-    var image = textureLoader.get(blockId);
+    var image = this.loaders.textureLoader.get(blockId);
     this.ctx.drawImage(image, x * this.scale, y * this.scale, this.scale, this.scale);
 }
 

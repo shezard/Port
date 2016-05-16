@@ -1,13 +1,12 @@
 var colors = require('../utils/colors');
-var TextureLoader = require('../utils/texture');
-var textureLoader = new TextureLoader(require('../game/constants').blocks);
 
-var World = function(el, mapSize) {
+var World = function(el, mapSize, loaders) {
   this.ctx = el.getContext('2d');
   this.width = el.width;
   this.height = el.height;
   this.mapSize = mapSize;
   this.sightRange = 4;
+  this.loaders = loaders;
 
   this.shapes = [
     [{x:0, y:40, w:60, h:this.height-80},{},                                                       {x:this.width-60, y:50, w:60, h:this.height-80}],
@@ -57,7 +56,7 @@ World.prototype.drawBackground = function() {
 
 World.prototype.drawWall = function(x, y, blockId) {
   var shape = this.shapes[x][y];
-  var image = textureLoader.get(blockId);
+  var image = this.loaders.textureLoader.get(blockId);
   this.ctx.drawImage(image, shape.x, shape.y, shape.w, shape.h);
   this.ctx.fillStyle = 'rgba(0,0,0,' + (5-x)/7 + ')';
   this.ctx.fillRect(shape.x, shape.y, shape.w, shape.h);
