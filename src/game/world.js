@@ -4,48 +4,70 @@ var World = function(el, loaders) {
   this.ctx = el.getContext('2d');
   this.width = el.width;
   this.height = el.height;
-  this.sightRange = 6;
+  this.sightRange = 8;
   this.loaders = loaders;
-
-  this.shapes = [
-    [{x:0, y:60, w:80, h:this.height-120},{x:(this.width-40) / 2,  y:60,w:40, h:this.height - 120},{x:this.width-80, y:60, w:80, h:this.height-120}],
-    [{x:0, y:50, w:70, h:this.height-100},{x:(this.width-60) / 2,  y:50,w:60, h:this.height - 100},{x:this.width-70, y:50, w:70, h:this.height-100}],
-    [{x:0, y:40, w:60, h:this.height-80},{x:(this.width-80) / 2,  y:40,w:80, h:this.height - 80},{x:this.width-60, y:40, w:60, h:this.height-80}],
-    [{x:0, y:30, w:50, h:this.height-60},{x:(this.width-100) / 2, y:30,w:100,h:this.height - 60},{x:this.width-50, y:30, w:50, h:this.height-60}],
-    [{x:0, y:20, w:40, h:this.height-40},{x:(this.width-120) / 2, y:20,w:120,h:this.height - 40},{x:this.width-40, y:20, w:40, h:this.height-40}],
-    [{x:0, y:10, w:30, h:this.height-20},{x:(this.width-140) / 2, y:10,w:140,h:this.height - 20}, {x:this.width-30, y:10, w:30, h:this.height-20}],
-    [{x:0, y:0,  w:20, h:this.height},   {x:(this.width-140) / 2, y:0, w:140,h:this.height},      {x:this.width-20, y:0,  w:20, h:this.height}],
-  ]
+  this.fov = 60;
 }
 
-World.prototype.render = function(map, player, entities) {
-
+World.prototype.render = function(map, player, entities) {
   this.drawBackground();
 
-  var depth = [-1, 1, 0];
+  var ro = {
+    x: player.x + .5,
+    y: player.y + .5
+  }
 
-  for(var d = 0 ; d <= 2 ; d++) {
+  var rd = player.d;
 
-    var j = depth[d];
+  var hits = [];
 
-    for(var i = this.sightRange ; i >= 0 ; i -= 1) {
+  for(var a = -this.fov ; a <= this.fov ; a += 1) {
 
-      var hit = {
-        x: player.x + player.d.x * i + (1 - Math.abs(player.d.x)) * j,
-        y: player.y + player.d.y * i + (1 - Math.abs(player.d.y)) * j
+    sightRange:
+    for(var t = 0.0; t <= this.sightRange  ; t += .1) {
+
+      var angle = Math.atan2(rd.y, rd.x);
+      var dangle = angle + (a / 180) * Math.PI;
+
+      var p = {
+        x: ro.x + t * Math.cos(dangle),
+        y: ro.y + t * Math.sin(dangle)
       }
 
-      if(map[hit.y] && map[hit.y][hit.x]) {
+      for(var i = 0 ; i < map.length ; i++) {
+        for(var j = 0 ; j < map[i].length ; j++) {
 
-        var wallX = this.sightRange - i;
-        var wallY = j + 1;
-        if(player.d.x == -1 && player.d.y == 0 || player.d.x == 0 && player.d.y == 1) {
-          wallY = -j + 1;
+          var block = map[i][j];
+
+          if(block && j <= p.x && p.x <= (j + 1) && i <= p.y && p.y <= (i + 1)) {
+            p.t = t;
+            p.a = a;
+            p.block = block;
+            hits.push(p);
+            break sightRange;
+          }
         }
-        this.drawWall(wallX, wallY, map[hit.y][hit.x]);
       }
     }
   }
+
+  for(var i = 0 ; i < hits.length ; i++) {
+    this.drawWall(hits[i]);
+  }
+}
+
+World.prototype.drawWall = function(hit) {
+  var x = (hit.a + this.fov) / (this.fov * 2) * this.width;
+  var y = (hit.t / this.sightRange) * 50;
+
+  this.ctx.fillStyle = '#000000';
+  if(hit.block == 3) {
+    this.ctx.fillStyle = '#00CC00';
+  }
+  if(hit.block == 9) {
+    this.ctx.fillStyle = '#CCCC00';
+  }
+  this.ctx.fillRect(x, y, (1 / (this.fov * 2)) * this.width, this.height - y * 2);
 }
 
 World.prototype.drawBackground = function() {
@@ -53,14 +75,6 @@ World.prototype.drawBackground = function() {
   this.ctx.fillRect(0, 0, this.width, this.height / 2);
   this.ctx.fillStyle = colors.grass;
   this.ctx.fillRect(0, this.height / 2, this.width, this.height / 2);
-}
-
-World.prototype.drawWall = function(x, y, blockId) {
-  var shape = this.shapes[x][y];
-  var image = this.loaders.textureLoader.get(blockId);
-  this.ctx.drawImage(image, shape.x, shape.y, shape.w, shape.h);
-  this.ctx.fillStyle = 'rgba(0,0,0,' + (5-x)/7 + ')';
-  this.ctx.fillRect(shape.x, shape.y, shape.w, shape.h);
 }
 
 module.exports = World;

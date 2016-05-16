@@ -1,6 +1,6 @@
 var World = require('../../../src/game/world');
 
-describe('World', function() {
+xdescribe('World', function() {
 
   var world;
 
