@@ -19,9 +19,6 @@ loader.ready(function(textureLoader) {
     textureLoader: textureLoader
   });
 
-  minimap.render(map, player, []);
-  world.render(map, player, []);
-
   document.querySelector('body').addEventListener('keyup', function(e) {
     switch(e.keyCode) {
       case 90: player.forward();
@@ -36,9 +33,15 @@ loader.ready(function(textureLoader) {
       case 68: player.right();
         break;
     }
-
-    minimap.render(map, player, []);
-    world.render(map, player, []);
   });
 
+  function renderAll() {
+    minimap.render(map, player, []);
+    world.render(map, player, []);
+    requestAnimationFrame(function() {
+      renderAll()
+    });
+  }
+
+  renderAll();
 });
