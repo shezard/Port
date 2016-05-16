@@ -1,5 +1,6 @@
 module.exports = {
-  mapSize: 5,
+  mapWidth:5,
+  mapHeight:8,
 
   map: [
     [1,1,1,1,1],

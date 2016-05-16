@@ -6,12 +6,14 @@ describe('Minimap', function() {
 
   beforeEach(function() {
     var el = document.createElement('canvas');
-    minimap = new Minimap(el, 3);
+    minimap = new Minimap(el, 3, 3);
   });
 
   it('should be initialized correctly', function() {
-    expect(minimap.mapSize).toBe(3);
-    expect(minimap.scale).toBe(100);
+    expect(minimap.mapWidth).toBe(3);
+    expect(minimap.mapHeight).toBe(3);
+    expect(minimap.scaleX).toBe(100);
+    expect(minimap.scaleY).toBe(50);
   });
 
   it('should render correctly', function() {

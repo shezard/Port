@@ -1,10 +1,9 @@
 var colors = require('../utils/colors');
 
-var World = function(el, mapSize, loaders) {
+var World = function(el, loaders) {
   this.ctx = el.getContext('2d');
   this.width = el.width;
   this.height = el.height;
-  this.mapSize = mapSize;
   this.sightRange = 6;
   this.loaders = loaders;
 

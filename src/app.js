@@ -5,17 +5,20 @@ var Player = require('./game/player');
 
 var constants = require('./game/constants');
 
-var mapSize = constants.mapSize;
+var mapSize = constants.mapWidth;
+var mapWidth = constants.mapWidth;
+var mapHeight = constants.mapHeight;
+
 var map = constants.map;
 
 var loader = new Loader();
 
 loader.ready(function(textureLoader) {
   var player = new Player(map, constants.player);
-  var minimap = new Minimap(document.querySelector('#minimap'), mapSize, {
+  var minimap = new Minimap(document.querySelector('#minimap'), mapWidth, mapHeight, {
     textureLoader: textureLoader
   });
-  var world = new World(document.querySelector('#world'), mapSize, {
+  var world = new World(document.querySelector('#world'), {
     textureLoader: textureLoader
   });
 

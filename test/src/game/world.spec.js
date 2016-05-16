@@ -12,7 +12,6 @@ describe('World', function() {
   it('should be initialized correctly', function() {
     expect(world.width).toBe(300);
     expect(world.height).toBe(150);
-    expect(world.mapSize).toBe(3);
   });
 
   it('should render correctly (facing left)', function() {
