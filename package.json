@@ -4,7 +4,9 @@
   "description": "Explore the land of Port",
   "main": "src/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS",
+    "build": "gulp",
+    "start": ""
   },
   "author": "Damien Fayol",
   "license": "ISC",
@@ -25,5 +27,8 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
+  },
+  "overrides": {
+    "graceful-fs": "^4.2.11"
   }
 }
